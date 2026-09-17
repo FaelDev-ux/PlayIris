@@ -6,22 +6,43 @@
   --color-cinza-nuvem: #e2e8f0;
   --color-cinza-ardosia: #64748b;
   --color-azul-meia-noite: #0f172a;
-  
+
   --color-azul-iris: #3b82f6;
   --color-verde-salvia: #10b981;
-  
+
   --color-lilas-cognitivo: #a78bfa;
   --color-coral-suave: #fb923c;
   --color-ciano-fluido: #2dd4bf;
 
-  --border-width-neo: 2px; /* borda padrão */
-  --border-width-neo-thick: 4px; /* Para estados de foco ou elementos de maior destaque */
+  --radius-neo: 16px;
+  /* bordas sem pontas e seguras quanto às normas */
 
-  --radius-neo: 16px; /* bordas sem pontas e seguras quanto às normas */
-  --radius-neo-pill: 9999px; /* Para os botões estilo pílula/badge */
-  --shadow-neo-soft: 4px 4px 0px 0px rgba(15, 23, 42, 0.08); 
-  --shadow-neo-solid: 3px 3px 0px 0px #0F172A; /* para hovers/foco */
+  --shadow-neo-soft: 4px 4px 0px 0px rgba(15, 23, 42, 0.08);
+  --shadow-neo-solid: 3px 3px 0px 0px #0F172A;
+  /* para hovers/foco */
 
-  --spacing-card-p: 2rem; /* 32px, espaçamento interno padronizado para os Cards Brancos */
-  --spacing-touch-target: 44px; /* Garantindo a regra de acessibilidade mínima de 44x44px para alvos */
+  --spacing-card-p: 2rem;
+  /* 32px, espaçamento interno padronizado para os Cards Brancos */
+  --spacing-touch-target: 44px;
+  /* Garantindo a regra de acessibilidade mínima de 44x44px para alvos */
+}
+
+@utility border-neo {
+  /* utilitário para facilitar efeito de borda assimétrica */
+  border-style: solid;
+  border-color: var(--color-azul-meia-noite);
+  border-top-width: 2px;
+  border-left-width: 2px;
+  border-bottom-width: 4px;
+  border-right-width: 4px;
+}
+
+@utility border-neo-thin {
+  /* versão mais fina para inputs e componentes menores */
+  border-style: solid;
+  border-color: var(--color-azul-meia-noite);
+  border-top-width: 1.5px;
+  border-left-width: 1.5px;
+  border-bottom-width: 3px;
+  border-right-width: 3px;
 }
