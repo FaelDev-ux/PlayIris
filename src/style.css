@@ -25,6 +25,42 @@
   /* 32px, espaçamento interno padronizado para os Cards Brancos */
   --spacing-touch-target: 44px;
   /* Garantindo a regra de acessibilidade mínima de 44x44px para alvos */
+  --font-sans: "Plus Jakarta Sans"; 
+}
+
+@layer base {
+  body {
+    background-color: var(--color-gelo-artico);
+    color: var(--color-azul-meia-noite);
+    font-family: var(--font-sans);
+    line-height: 1.625; 
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-azul-meia-noite);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.5rem; } 
+  
+  p {
+    margin-bottom: 1rem;
+    color: var(--color-azul-meia-noite);
+  }
+
+  input, button, select, textarea {
+    font-family: inherit;
+    color: inherit;
+  }
+
+  *:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.4); 
+  }
 }
 
 @utility border-neo {
