@@ -1,4 +1,4 @@
-import { createInput } from '../../components/ui/Input.js';
+import { createRegisterForm } from '../../components/auth/RegisterForm.js';
 import irisMascot from '../../assets/images/iris-gamepad.webp';
 
 export function registerPage(container) {
@@ -17,7 +17,7 @@ export function registerPage(container) {
             <div class="mx-auto grid min-h-[calc(100vh-8px)] max-w-7xl grid-cols-1 lg:grid-cols-[1.15fr_0.85fr]">
                 <section class="flex flex-col items-center justify-center p-8" aria-labelledby="iris-heading">
                     <div class="inline-flex items-center gap-2 rounded-full border-neo-thin bg-branco-porcelana px-4 py-2 text-xs font-bold uppercase">
-                        <span class="h-2 w-2 rounded-full bg-azul-iris" aria-hidden="true"></span>
+                        <span class="h-3 w-3 border rounded-full bg-azul-iris" aria-hidden="true"></span>
                         Plataforma íris • Apoio ao neurodesenvolvimento
                     </div>
 
@@ -33,21 +33,21 @@ export function registerPage(container) {
                         Apoiando o desenvolvimento no ritmo de cada criança, com carinho, tecnologia e acolhimento.
                     </p>
 
-                    <ul class="mt-5 grid w-full max-w-xl grid-cols-1 gap-3 sm:grid-cols-2" aria-label="Benefícios da Plataforma Íris">
+                    <ul class="mt-5 grid w-full max-w-md grid-cols-1 gap-3 sm:grid-cols-2" aria-label="Benefícios da Plataforma Íris">
                         <li class="flex min-h-touch-target items-center gap-2 rounded-neo border-neo-thin bg-branco-porcelana px-3 py-2 text-xs font-bold">
-                            <span class="h-2 w-2 shrink-0 rounded-full bg-lilas-cognitivo " aria-hidden="true"></span>
+                            <span class="h-3 w-3 border shrink-0 rounded-full bg-lilas-cognitivo " aria-hidden="true"></span>
                             Ambiente Seguro & LGPD
                         </li>
                         <li class="flex min-h-touch-target items-center gap-2 rounded-neo border-neo-thin bg-branco-porcelana px-3 py-2 text-xs font-bold">
-                            <span class="h-2 w-2 shrink-0 rounded-full bg-verde-salvia" aria-hidden="true"></span>
+                            <span class="h-3 w-3 border shrink-0 rounded-full bg-verde-salvia" aria-hidden="true"></span>
                             Metodologia Lúdica & Neuro
                         </li>
                         <li class="flex min-h-touch-target items-center gap-2 rounded-neo border-neo-thin bg-branco-porcelana px-3 py-2 text-xs font-bold">
-                            <span class="h-2 w-2 shrink-0 rounded-full bg-coral-suave" aria-hidden="true"></span>
+                            <span class="h-3 w-3 border shrink-0 rounded-full bg-coral-suave" aria-hidden="true"></span>
                             Gamificação Acolhedora
                         </li>
                         <li class="flex min-h-touch-target items-center gap-2 rounded-neo border-neo-thin bg-branco-porcelana px-3 py-2 text-xs font-bold">
-                            <span class="h-2 w-2 shrink-0 rounded-full bg-ciano-fluido" aria-hidden="true"></span>
+                            <span class="h-3 w-3 border shrink-0 rounded-full bg-ciano-fluido" aria-hidden="true"></span>
                             Suporte TEA Individualizado
                         </li>
                     </ul>
@@ -57,36 +57,19 @@ export function registerPage(container) {
                     </p>
                 </section>
 
-                <section class="flex items-center justify-center p-8">
-                    <form id="form-registro" class="w-full max-w-md border-neo rounded-neo bg-branco-porcelana p-card-p shadow-neo-soft">
-                        <h2 class="text-2xl font-bold">
-                            Criar conta
-                        </h2>
-                    </form>
+                <section
+                    id="register-panel"
+                    class="flex items-center justify-center p-8"
+                    aria-labelledby="register-heading"
+                    >
                 </section>
             </div>
         </div>
     `;
+    const registerPanel = container.querySelector('#register-panel');
+    const registerForm = createRegisterForm();
 
-    const form = container.querySelector('#form-registro');
-
-    const inputNome = createInput({ 
-        label: 'NOME COMPLETO', 
-        placeholder: 'Ex: Dra. Mariana Costa' 
-    });
-    
-    const inputEmail = createInput({ 
-        label: 'E-MAIL', 
-        type: 'email', 
-        placeholder: 'seuemail@exemplo.com' 
-    });
-
-    form.append(inputNome, inputEmail);
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        console.log('Dados:', inputNome.getValue(), inputEmail.getValue());
-    });
+    registerPanel.append(registerForm);
 
     return function desmontar() {
         container.innerHTML = '';

@@ -6,6 +6,9 @@ export function createInput({
     placeholder = '',
     id = gerarIdUnico(),
     required = false,
+    name = id,
+    autocomplete = '',
+    minLength,
     onInputCallback
 }) {
     const wrapper = document.createElement('div');
@@ -20,6 +23,16 @@ export function createInput({
     inputElement.id = id;
     inputElement.type = type;
     inputElement.placeholder = placeholder;
+    inputElement.name = name;
+
+    if (autocomplete) {
+        inputElement.autocomplete = autocomplete;
+    }
+
+    if (minLength) {
+        inputElement.minLength = minLength;
+    }
+    
     if (required) inputElement.required = true;
 
     inputElement.className = `
