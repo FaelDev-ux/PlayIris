@@ -26,5 +26,8 @@
     "@tailwindcss/vite": "^4.3.3",
     "tailwindcss": "^4.3.3",
     "vite": "^8.3.0"
+  },
+  "dependencies": {
+    "zod": "^4.6.5"
   }
 }
