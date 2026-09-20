@@ -3,6 +3,7 @@ import { createAccountTypeSelector } from './AccountTypeSelector.js';
 import { createButton } from '../ui/Button.js';
 import googleIcon from '../../assets/images/google.svg';
 import { createTermsCheckbox } from './TermsCheckbox.js';
+import { navigateTo } from "../../router.js";
 
 export function createRegisterForm() {
   const form = document.createElement('form');
@@ -61,10 +62,15 @@ export function createRegisterForm() {
   loginPrompt.innerHTML = `
     Já tem uma conta na Íris? 
 
-    <a href="/login" class="font-bold text-azul-iris underline underline-offset-2">
+    <a href="/login" class="cursor-pointer font-bold text-azul-iris underline underline-offset-2">
       Entrar
     </a>
   `;
+
+  loginPrompt.querySelector("a").addEventListener("click", e => {
+    e.preventDefault();
+    navigateTo("/login");
+  });
 
   const accountTypeSelector = createAccountTypeSelector();
   const termsCheckbox = createTermsCheckbox();

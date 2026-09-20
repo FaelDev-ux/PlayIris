@@ -1,3 +1,5 @@
+import { navigateTo } from "../../router";
+
 export function createTermsCheckbox() {
   const wrapper = document.createElement('div');
 
@@ -15,16 +17,26 @@ export function createTermsCheckbox() {
 
       <span>
         Concordo com os
-        <a href="/termos" class="font-bold text-azul-meia-noite underline decoration-azul-iris underline-offset-2">
+        <a href="/termos" class="cursor-pointer font-bold text-azul-meia-noite underline decoration-azul-iris underline-offset-2">
           Termos de Uso
         </a>
         e com a
-        <a href="/privacidade" class="font-bold text-azul-meia-noite underline decoration-azul-iris underline-offset-2">
+        <a href="/privacidade" class="cursor-pointer font-bold text-azul-meia-noite underline decoration-azul-iris underline-offset-2">
           Política de Privacidade (LGPD)
         </a>.
       </span>
     </label>
   `;
+
+  wrapper.querySelectorAll("a")[0].addEventListener("click", e => {
+    e.preventDefault();
+    navigateTo("/termos");
+  });
+
+  wrapper.querySelectorAll("a")[1].addEventListener("click", e => {
+    e.preventDefault();
+    navigateTo("/privacidade");
+  });
 
   return wrapper;
 }
