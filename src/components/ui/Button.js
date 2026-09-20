@@ -9,7 +9,7 @@ const buttonVariants = {
   outline: `
     bg-branco-porcelana
     text-azul-meia-noite
-    shadow-neo-soft
+    shadow-neo-solid
     hover:bg-gelo-artico
   `
 };
@@ -35,6 +35,7 @@ export function createButton({
     border-neo-thin
     px-4
     py-3
+    mb-2
     text-sm
     font-bold
     cursor-pointer

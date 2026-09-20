@@ -9,6 +9,7 @@ export function createInput({
     name = id,
     autocomplete = '',
     minLength,
+    topLink = false,
     onInputCallback
 }) {
     const wrapper = document.createElement('div');
@@ -50,6 +51,9 @@ export function createInput({
         transition-all
     `;
 
+    const spanTopLink = document.createElement('span');
+    spanTopLink.innerText = 'Esqueceu a senha?';
+    spanTopLink.className = 'text-azul-iris text-xs flex-end font-bold cursor-pointer z-1 -mb-5 flex justify-end';
    
     const errorSpan = document.createElement('span');  //span para possíveis erros
     errorSpan.id = `${id}-erro`;
@@ -62,6 +66,7 @@ export function createInput({
         });
     }
 
+    if (type === "password" && topLink) wrapper.appendChild(spanTopLink);
     wrapper.appendChild(labelElement);
     wrapper.appendChild(inputElement);
     wrapper.appendChild(errorSpan);
