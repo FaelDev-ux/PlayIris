@@ -1,4 +1,4 @@
-import { createInput } from '../ui/Input.js';
+import { createInput } from '../ui/Input.jsx';
 import { createAccountTypeSelector } from './AccountTypeSelector.js';
 import { createButton } from '../ui/Button.js';
 import googleIcon from '../../assets/images/google.svg';
