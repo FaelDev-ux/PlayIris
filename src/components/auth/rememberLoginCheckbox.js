@@ -1,5 +1,3 @@
-import { navigateTo } from "../../router";
-
 export function createRememberLoginCheckbox() {
   const wrapper = document.createElement('div');
 

@@ -2,9 +2,9 @@ import { createLoginForm } from '../../components/auth/LoginForm.js';
 import { createPageBackground } from '../../components/layout/PageBackground.js';
 import { createAuthLayout } from '../../components/auth/AuthLayout.js';
 
-export function loginPage(container) {
+export function loginPage(container, navigateTo) {
     const { page, content } = createPageBackground();
-    const loginForm = createLoginForm();
+    const loginForm = createLoginForm(navigateTo);
 
     const authLayout = createAuthLayout(
         loginForm,
