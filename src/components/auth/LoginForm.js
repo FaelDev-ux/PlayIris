@@ -1,11 +1,10 @@
 import { createInput } from '../ui/Input.jsx';
-import { createAccountTypeSelector } from './AccountTypeSelector.js';
+import { createAccountTypeSelector } from './AccountTypeSelector.jsx';
 import { createRememberLoginCheckbox } from './rememberLoginCheckbox.js';
-import { createButton } from '../ui/Button.js';
+import { createButton } from '../ui/Button.jsx';
 import googleIcon from '../../assets/images/google.svg';
-import { navigateTo } from "../../router.js";
 
-export function createLoginForm() {
+export function createLoginForm(navigateTo) {
   const form = document.createElement('form');
 
   form.id = 'form-login';

@@ -1,4 +1,4 @@
-import { createColorBar } from '../ui/ColorBar.js';
+import { createColorBar } from '../ui/ColorBar.jsx';
 
 export function createPageBackground() {
   const page = document.createElement('div');

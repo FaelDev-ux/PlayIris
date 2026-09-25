@@ -1,11 +1,10 @@
 import { createInput } from '../ui/Input.jsx';
-import { createAccountTypeSelector } from './AccountTypeSelector.js';
-import { createButton } from '../ui/Button.js';
+import { createAccountTypeSelector } from './AccountTypeSelector.jsx';
+import { createButton } from '../ui/Button.jsx';
 import googleIcon from '../../assets/images/google.svg';
-import { createTermsCheckbox } from './TermsCheckbox.js';
-import { navigateTo } from "../../router.js";
+import { createTermsCheckbox } from './TermsCheckbox.jsx';
 
-export function createRegisterForm() {
+export function createRegisterForm(navigateTo) {
   const form = document.createElement('form');
 
   form.id = 'form-registro';
@@ -73,7 +72,7 @@ export function createRegisterForm() {
   });
 
   const accountTypeSelector = createAccountTypeSelector();
-  const termsCheckbox = createTermsCheckbox();
+  const termsCheckbox = createTermsCheckbox(navigateTo);
 
   const inputNome = createInput({
     id: 'full-name',
