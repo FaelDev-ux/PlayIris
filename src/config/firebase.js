@@ -15,15 +15,13 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 
 export const appCheck = initializeAppCheck(app, {
-  provider: new ReCaptchaV3Provider('SUA_CHAVE_PUBLICA_RECAPTCHA'),
+  provider: new ReCaptchaV3Provider('6Let_84tAAAAAHfpHThRgEpJwNp6qeRE4Gxvb__2'),
   isTokenAutoRefreshEnabled: true
 });
 
-// Inicializa os serviços
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
-// Conecta aos emuladores locais caso esteja rodando pelo Vite (desenvolvimento)
 if (import.meta.env.DEV) {
   connectAuthEmulator(auth, "http://127.0.0.1:9099");
   connectFirestoreEmulator(db, '127.0.0.1', 8080);
