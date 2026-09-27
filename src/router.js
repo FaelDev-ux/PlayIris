@@ -1,5 +1,5 @@
-import { registerPage } from './views/auth/register.js';
-import { loginPage } from './views/auth/login.js';
+import { registerPage } from './views/auth/register.jsx';
+import { loginPage } from './views/auth/login.jsx';
 
 const appContainer = document.getElementById('app');
 let UnmountFunction = null; 
