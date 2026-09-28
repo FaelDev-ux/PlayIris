@@ -12,6 +12,7 @@ export function Input({
   minLength,
   topLink = false,
   onInputCallback,
+  ref
 }) {
   let inputElement;
   let spanErro;
@@ -82,6 +83,8 @@ export function Input({
       );
     }
   };
+
+  if (ref) typeof ref === "function" ? ref(wrapper) : (ref.current = wrapper);
 
   return wrapper;
 }

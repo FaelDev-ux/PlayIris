@@ -4,7 +4,7 @@ import { Button } from "../ui/Button.jsx";
 import googleIcon from "../../assets/images/google.svg";
 import { TermsCheckbox } from "./TermsCheckbox.jsx";
 
-export function RegisterForm({ onSubmitRegister, onNavigateToLogin, onNavigateToTerms, onNavigateToPrivacity }) {
+export function RegisterForm({ onSubmitRegister, onNavigateToLogin, onNavigateToTerms, onNavigateToPrivacity, inputsRef }) {
   return (
     <form
       id="form-registro"
@@ -25,6 +25,7 @@ export function RegisterForm({ onSubmitRegister, onNavigateToLogin, onNavigateTo
       <AccountTypeSelector />
 
       <Input
+        ref={inputsRef.fullName}
         id="full-name"
         name="fullName"
         label="NOME COMPLETO"
@@ -34,6 +35,7 @@ export function RegisterForm({ onSubmitRegister, onNavigateToLogin, onNavigateTo
       />
 
       <Input
+        ref={inputsRef.email}
         id="email"
         name="email"
         label="E-MAIL"
@@ -44,24 +46,24 @@ export function RegisterForm({ onSubmitRegister, onNavigateToLogin, onNavigateTo
       />
 
       <Input
+        ref={inputsRef.password}
         id="password"
         name="password"
         label="SENHA"
         type="password"
         placeholder="Crie uma senha (min. 8 caracteres)"
         autocomplete="new-password"
-        minLength={8}
         required
       />
 
       <Input
+        ref={inputsRef.confirmPassword}
         id="password-confirmation"
         name="passwordConfirmation"
         label="CONFIRMAR SENHA"
         type="password"
         placeholder="Repita sua senha"
         autocomplete="new-password"
-        minLength={8}
         required
       />
 

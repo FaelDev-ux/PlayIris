@@ -13,9 +13,10 @@ export const loginSchema = z.object({
   password: z.string().min(8, "A senha deve ter pelo menos 8 caracteres.")
 })
 
-export const registerShema = z.object({
+export const registerSchema = z.object({
   accountType: z.string(),
   fullName: z.string().min(15, "Insira seu nome completo.").max(100, "Nome longo demais, máximo de 100 caracteres."),
   email: z.email("Insira um e-mail válido."),
   password: passwordSchema,
+  terms: z.string(),
 })

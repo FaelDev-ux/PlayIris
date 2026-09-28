@@ -4,7 +4,7 @@ import { RememberLoginCheckbox } from "./rememberLoginCheckbox.jsx";
 import { Button } from "../ui/Button.jsx";
 import googleIcon from "../../assets/images/google.svg";
 
-export function LoginForm({ onSubmitLogin, onNavigateToRegister }) {
+export function LoginForm({ onSubmitLogin, onNavigateToRegister, inputsRef }) {
   return (
     <form
       id="form-login"
@@ -23,6 +23,7 @@ export function LoginForm({ onSubmitLogin, onNavigateToRegister }) {
       <AccountTypeSelector />
 
       <Input
+        ref={inputsRef.email}
         id="email"
         name="email"
         label="E-MAIL"
@@ -33,13 +34,13 @@ export function LoginForm({ onSubmitLogin, onNavigateToRegister }) {
       />
 
       <Input
+        ref={inputsRef.password}
         id="password"
         name="password"
         label="SENHA"
         type="password"
         placeholder="Digite sua senha"
         autocomplete="password"
-        minLength={8}
         topLink
         required
       />
