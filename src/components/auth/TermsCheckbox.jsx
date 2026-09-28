@@ -1,10 +1,6 @@
 import { Checkbox } from "../ui/Checkbox.jsx";
 
-export function TermsCheckbox(navigateTo) {
-  function handleNavigation(event, route) {
-    event.preventDefault();
-    navigateTo(route);
-  }
+export function TermsCheckbox({ onNavigateToTerms, onNavigateToPrivacity }) {
 
   return (
     <div className="my-5">
@@ -13,7 +9,7 @@ export function TermsCheckbox(navigateTo) {
         <a
           href="/termos"
           className="cursor-pointer font-bold text-azul-meia-noite underline decoration-azul-iris underline-offset-2"
-          onClick={(event) => handleNavigation(event, "/termos")}
+          onClick={onNavigateToTerms}
         >
           Termos de Uso
         </a>{" "}
@@ -21,7 +17,7 @@ export function TermsCheckbox(navigateTo) {
         <a
           href="/privacidade"
           className="cursor-pointer font-bold text-azul-meia-noite underline decoration-azul-iris underline-offset-2"
-          onClick={(event) => handleNavigation(event, "/privacidade")}
+          onClick={onNavigateToPrivacity}
         >
           Política de privacidade (LGPD)
         </a>

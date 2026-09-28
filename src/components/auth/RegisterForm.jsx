@@ -4,68 +4,12 @@ import { Button } from "../ui/Button.jsx";
 import googleIcon from "../../assets/images/google.svg";
 import { TermsCheckbox } from "./TermsCheckbox.jsx";
 
-export function RegisterForm(navigateTo) {
-  const inputNome = Input({
-    id: "full-name",
-    name: "fullName",
-    label: "NOME COMPLETO",
-    placeholder: "Ex: Dra. Mariana Costa",
-    autocomplete: "name",
-    required: true,
-  });
-
-  const inputEmail = Input({
-    id: "email",
-    name: "email",
-    label: "E-MAIL",
-    type: "email",
-    placeholder: "seuemail@exemplo.com",
-    autocomplete: "email",
-    required: true,
-  });
-
-  const inputSenha = Input({
-    id: "password",
-    name: "password",
-    label: "SENHA",
-    type: "password",
-    placeholder: "Crie uma senha (min. 8 caracteres)",
-    autocomplete: "new-password",
-    minLength: 8,
-    required: true,
-  });
-
-  const inputConfirmarSenha = Input({
-    id: "password-confirmation",
-    name: "passwordConfirmation",
-    label: "CONFIRMAR SENHA",
-    type: "password",
-    placeholder: "Repita sua senha",
-    autocomplete: "new-password",
-    minLength: 8,
-    required: true,
-  });
-
-  const googleButton = Button({
-    text: "Criar conta com o Google",
-    variant: "outline",
-    iconSrc: googleIcon,
-  });
-
-  const submitButton = Button({
-    text: "Criar Conta",
-    type: "submit",
-    variant: "primary",
-  });
-
+export function RegisterForm({ onSubmitRegister, onNavigateToLogin, onNavigateToTerms, onNavigateToPrivacity }) {
   return (
     <form
       id="form-registro"
       className="w-full max-w-md rounded-neo border-neo bg-branco-porcelana p-card-p shadow-neo-soft"
-      onSubmit={(event) => {
-        event.preventDefault();
-        console.log("Dados:", inputNome.value(), inputEmail.value());
-      }}
+      onSubmit={onSubmitRegister}
     >
       <header className="mb-6">
         <h2 className="text-2xl font-bold" id="register-heading">
@@ -78,20 +22,56 @@ export function RegisterForm(navigateTo) {
         </p>
       </header>
 
-      {AccountTypeSelector()}
+      <AccountTypeSelector />
 
-      {inputNome}
-      {inputEmail}
-      {inputSenha}
-      {inputConfirmarSenha}
+      <Input
+        id="full-name"
+        name="fullName"
+        label="NOME COMPLETO"
+        placeholder="Ex: Mariana Costa"
+        autocomplete="name"
+        required
+      />
 
-      {TermsCheckbox(navigateTo)}
+      <Input
+        id="email"
+        name="email"
+        label="E-MAIL"
+        type="email"
+        placeholder="seuemail@exemplo.com"
+        autocomplete="email"
+        required
+      />
 
-      {Button({
-        text: "Criar conta",
-        type: "submit",
-        variant: "primary",
-      })}
+      <Input
+        id="password"
+        name="password"
+        label="SENHA"
+        type="password"
+        placeholder="Crie uma senha (min. 8 caracteres)"
+        autocomplete="new-password"
+        minLength={8}
+        required
+      />
+
+      <Input
+        id="password-confirmation"
+        name="passwordConfirmation"
+        label="CONFIRMAR SENHA"
+        type="password"
+        placeholder="Repita sua senha"
+        autocomplete="new-password"
+        minLength={8}
+        required
+      />
+
+      <TermsCheckbox onNavigateToTerms={onNavigateToTerms} onNavigateToPrivacity={onNavigateToPrivacity} />
+
+      <Button
+        text="Criar conta"
+        type="submit"
+        variant="primary"
+      />
 
       <div className="my-4 flex items-center gap-3 text-xs font-bold uppercase text-cinza-ardosia">
         <span className="h-px flex-1 bg-cinza-nuvem"></span>
@@ -99,21 +79,18 @@ export function RegisterForm(navigateTo) {
         <span className="h-px flex-1 bg-cinza-nuvem"></span>
       </div>
 
-      {Button({
-        text: "Criar conta com o Google",
-        variant: "outline",
-        iconSrc: googleIcon,
-      })}
+      <Button
+        text="Criar conta com o Google"
+        variant="outline"
+        iconSrc={googleIcon}
+      />
 
       <p className="mb-0 mt-6 text-center text-xs text-cinza-ardosia">
         Já tem uma conta no Íris?{" "}
         <a
           href="/login"
           className="cursor-pointer font-bold text-azul-iris underline underline-offset-2"
-          onCLick={(event) => {
-            event.preventDefault();
-            navigateTo("/login");
-          }}
+          onClick={onNavigateToLogin}
         >
           Entrar
         </a>

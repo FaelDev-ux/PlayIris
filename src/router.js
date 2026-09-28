@@ -13,10 +13,10 @@ export function navigateTo(rota) {
 
     switch (rota) {
         case '/cadastro':
-            UnmountFunction = registerPage(appContainer, navigateTo);
+            UnmountFunction = registerPage(appContainer);
             break;
         case '/login':
-            UnmountFunction = loginPage(appContainer, navigateTo);
+            UnmountFunction = loginPage(appContainer);
             break;
         default:
             appContainer.innerHTML = '<h1 class="p-8">404 - Página não encontrada</h1>';

@@ -4,37 +4,12 @@ import { RememberLoginCheckbox } from "./rememberLoginCheckbox.jsx";
 import { Button } from "../ui/Button.jsx";
 import googleIcon from "../../assets/images/google.svg";
 
-export function LoginForm(navigateTo) {
-  const inputEmail = Input({
-    id: "email",
-    name: "email",
-    label: "E-MAIL",
-    type: "email",
-    placeholder: "seuemail@exemplo.com",
-    autocomplete: "email",
-    required: true,
-  });
-
-  const inputSenha = Input({
-    id: "password",
-    name: "password",
-    label: "SENHA",
-    type: "password",
-    placeholder: "Digite sua senha",
-    autocomplete: "password",
-    minLength: 8,
-    topLink: true,
-    required: true,
-  });
-
+export function LoginForm({ onSubmitLogin, onNavigateToRegister }) {
   return (
     <form
       id="form-login"
       className="w-full max-w-md rounded-neo border-neo bg-branco-porcelana p-card-p shadow-neo-soft"
-      onSubmit={(event) => {
-        event.preventDefault();
-        console.log("Dados:", inputEmail.getValue(), inputSenha.getValue());
-      }}
+      onSubmit={onSubmitLogin}
     >
       <header className="mb-6">
         <h2 id="login-heading" className="text-2xl font-bold">
@@ -45,18 +20,33 @@ export function LoginForm(navigateTo) {
           Acesse sua conta para continuar acompanhando as atividades.
         </p>
       </header>
-      {AccountTypeSelector()}
+      <AccountTypeSelector />
 
-      {inputEmail}
-      {inputSenha}
+      <Input
+        id="email"
+        name="email"
+        label="E-MAIL"
+        type="email"
+        placeholder="seuemail@exemplo.com"
+        autocomplete="email"
+        required
+      />
 
-      {RememberLoginCheckbox()}
+      <Input
+        id="password"
+        name="password"
+        label="SENHA"
+        type="password"
+        placeholder="Digite sua senha"
+        autocomplete="password"
+        minLength={8}
+        topLink
+        required
+      />
 
-      {Button({
-        text: "Entrar",
-        type: "submit",
-        variant: "primary",
-      })}
+      <RememberLoginCheckbox />
+
+      <Button text="Entrar" type="submit" variant="primary" />
 
       <div className="my-4 flex items-center gap-3 text-xs font-bold uppercase text-cinza-ardosia">
         <span className="h-px flex-1 bg-cinza-nuvem"></span>
@@ -64,21 +54,18 @@ export function LoginForm(navigateTo) {
         <span className="h-px flex-1 bg-cinza-nuvem"></span>
       </div>
 
-      {Button({
-        text: "Continuar com o google",
-        variant: "outline",
-        iconSrc: googleIcon,
-      })}
+      <Button
+        text="Continuar com o google"
+        variant="outline"
+        iconSrc={googleIcon}
+      />
 
       <p className="mb-0 mt-6 text-center text-xs text-cinza-ardosia">
         Ainda não tem uma conta Íris?{" "}
         <a
           className="cursor-pointer font-bold text-azul-iris underline underline-offset-2"
           href="/cadastro"
-          onClick={(event) => {
-            event.preventDefault();
-            navigateTo("/cadastro");
-          }}
+          onClick={onNavigateToRegister}
         >
           Criar Conta
         </a>
