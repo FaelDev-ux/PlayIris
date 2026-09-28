@@ -11,14 +11,14 @@ const buttonVariants = {
     text-azul-meia-noite
     shadow-neo-solid
     hover:bg-gelo-artico
-  `
+  `,
 };
 
-export function createButton({
+export function Button({
   text,
-  type = 'button',
-  variant = 'primary',
-  iconSrc = ''
+  type = "button",
+  variant = "primary",
+  iconSrc = "",
 }) {
   return (
     <button
@@ -42,19 +42,13 @@ export function createButton({
         hover:-translate-y-0.5
         active:translate-y-0
         ${buttonVariants[variant]}
-      `}>
+      `}
+    >
       {iconSrc && (
-        <img
-          src={iconSrc}
-          alt=""
-          className="h-4 w-4"
-          aria-hidden="true"
-        />
+        <img src={iconSrc} alt="" className="h-4 w-4" aria-hidden="true" />
       )}
 
-      <span>
-        {text}
-      </span>
+      <span>{text}</span>
     </button>
-  )
+  );
 }

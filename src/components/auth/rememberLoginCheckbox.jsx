@@ -1,5 +1,5 @@
-import { Checkbox } from '../ui/Checkbox.jsx';
-export function createRememberLoginCheckbox() {
+import { Checkbox } from "../ui/Checkbox.jsx";
+export function RememberLoginCheckbox() {
   return (
     <div className="my-5">
       {}
@@ -9,5 +9,5 @@ export function createRememberLoginCheckbox() {
         </span>
       </Checkbox>
     </div>
-  )
+  );
 }

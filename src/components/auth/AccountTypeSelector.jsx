@@ -1,4 +1,4 @@
-export function createAccountTypeSelector() {
+export function AccountTypeSelector() {
   return (
     <fieldset className="mb-6">
       <legend className="mb-2 text-xs font-bold uppercase tracking-wide">
@@ -16,8 +16,10 @@ export function createAccountTypeSelector() {
           />
 
           <span className="flex min-h-touch-target items-center rounded-xl gap-2 px-2 text-center justify-center text-xs font-bold transition-colors peer-checked:border-neo-thin peer-checked:bg-azul-iris peer-checked:text-white peer-checked:[&>.account-dot]:bg-white peer-focus-visible:ring-4 peer-focus-visible:ring-azul-iris/30">
-          <span className="account-dot h-3 w-3 shrink-0 rounded-full border border-cinza-ardosia bg-cinza-nuvem transition-colors" aria-hidden="true">
-          </span>
+            <span
+              className="account-dot h-3 w-3 shrink-0 rounded-full border border-cinza-ardosia bg-cinza-nuvem transition-colors"
+              aria-hidden="true"
+            ></span>
             Responsável / Família
           </span>
         </label>
@@ -32,8 +34,10 @@ export function createAccountTypeSelector() {
           />
 
           <span className="flex min-h-touch-target items-center justify-center rounded-xl gap-2 px-2 text-center text-xs font-bold transition-colors peer-checked:border-neo-thin peer-checked:bg-azul-iris peer-checked:text-white peer-checked:[&>.account-dot]:bg-white peer-focus-visible:ring-4 peer-focus-visible:ring-azul-iris/30">
-          <span className="account-dot h-3 w-3 shrink-0 rounded-full border border-cinza-ardosia bg-cinza-nuvem transition-colors" aria-hidden="true">
-          </span>
+            <span
+              className="account-dot h-3 w-3 shrink-0 rounded-full border border-cinza-ardosia bg-cinza-nuvem transition-colors"
+              aria-hidden="true"
+            ></span>
             Profissional / Clínica
           </span>
         </label>

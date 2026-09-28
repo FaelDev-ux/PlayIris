@@ -1,6 +1,7 @@
-const gerarIdUnico = () => `input-${Math.random().toString(36).substring(2, 9)}`;
+const gerarIdUnico = () =>
+  `input-${Math.random().toString(36).substring(2, 9)}`;
 
-export function createInput({
+export function Input({
   label,
   type = "text",
   placeholder = "",
@@ -12,7 +13,6 @@ export function createInput({
   topLink = false,
   onInputCallback,
 }) {
-  
   let inputElement;
   let spanErro;
 
@@ -32,7 +32,7 @@ export function createInput({
       </label>
 
       <input
-        ref={(el) => inputElement = el}
+        ref={(el) => (inputElement = el)}
         className="w-full max-w-100 bg-branco-porcelana text-azul-meia-noite border-neo rounded-neo px-4 py-3 min-h-touch-target placeholder:text-cinza-ardosia placeholder:font-semibold focus:outline-none focus:ring-4 focus:ring-azul-iris/30 focus:border-azul-iris transition-all border-azul-meia-noite"
         type={type}
         id={id}
@@ -41,15 +41,15 @@ export function createInput({
         autoComplete={autocomplete}
         minLength={minLength}
         required={required}
-        onInput={(event) => { 
-            if (onInputCallback && typeof onInputCallback === "function") {
-                onInputCallback(event.target.value, event);
-            }
+        onInput={(event) => {
+          if (onInputCallback && typeof onInputCallback === "function") {
+            onInputCallback(event.target.value, event);
+          }
         }}
       />
 
       <span
-        ref={(el) => spanErro = el}
+        ref={(el) => (spanErro = el)}
         className="text-coral-suave text-xs font-semibold hidden"
         id={`${id}-erro`}
         aria-live="polite"
@@ -63,17 +63,23 @@ export function createInput({
     if (mensagem) {
       spanErro.textContent = mensagem;
       spanErro.classList.remove("hidden");
-      
+
       inputElement.setAttribute("aria-invalid", "true");
       inputElement.setAttribute("aria-describedby", spanErro.id);
-      inputElement.classList.replace("border-azul-meia-noite", "border-coral-suave");
+      inputElement.classList.replace(
+        "border-azul-meia-noite",
+        "border-coral-suave",
+      );
     } else {
       spanErro.textContent = "";
       spanErro.classList.add("hidden");
-      
+
       inputElement.removeAttribute("aria-invalid");
       inputElement.removeAttribute("aria-describedby");
-      inputElement.classList.replace("border-coral-suave", "border-azul-meia-noite");
+      inputElement.classList.replace(
+        "border-coral-suave",
+        "border-azul-meia-noite",
+      );
     }
   };
 

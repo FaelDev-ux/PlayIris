@@ -1,17 +1,17 @@
-import { createRegisterForm } from '../../components/auth/RegisterForm.jsx';
-import { PageBackground } from '../../components/layout/PageBackground.jsx';
-import { createAuthLayout } from '../../components/auth/AuthLayout.jsx';
+import { RegisterForm } from "../../components/auth/RegisterForm.jsx";
+import { PageBackground } from "../../components/layout/PageBackground.jsx";
+import { AuthLayout } from "../../components/auth/AuthLayout.jsx";
 
 export function registerPage(container, navigateTo) {
-    const page = (
-        <PageBackground>
-            {createAuthLayout(createRegisterForm(navigateTo), 'register-heading')}
-        </PageBackground>
-    );
+  const page = (
+    <PageBackground>
+      {AuthLayout(RegisterForm(navigateTo), "register-heading")}
+    </PageBackground>
+  );
 
-    container.replaceChildren(page);
+  container.replaceChildren(page);
 
-    return function desmontar() {
-        container.innerHTML = '';
-    };
+  return function desmontar() {
+    container.innerHTML = "";
+  };
 }
