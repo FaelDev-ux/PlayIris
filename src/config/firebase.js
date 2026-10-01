@@ -14,6 +14,10 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 
+if (process.env.NODE_ENV === 'development' || window.location.hostname === 'localhost') {
+  self.FIREBASE_APPCHECK_DEBUG_TOKEN = true; 
+}
+
 export const appCheck = initializeAppCheck(app, {
   provider: new ReCaptchaV3Provider('6Let_84tAAAAAHfpHThRgEpJwNp6qeRE4Gxvb__2'),
   isTokenAutoRefreshEnabled: true
