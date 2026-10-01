@@ -20,8 +20,8 @@ export async function registerUser(fullname, email, password) {
     }
 }
 
-function formatError(codigo) {
-    switch (codigo) {
+function formatError(code) {
+    switch (code) {
         case 'auth/email-already-in-use':
             return 'Este email já está cadastrado.';
         case 'auth/weak-password':

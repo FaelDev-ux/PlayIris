@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
-import { GoogleAuthProvider } from "firebase/auth/web-extension";
+import { GoogleAuthProvider } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../../config/firebase";
 
@@ -45,8 +45,10 @@ export async function logout() {
   }
 }
 
-function formatError(codigo) {
-  switch (codigo) {
+window.document.logout = logout; //expondo método de logout provisório
+
+function formatError(code) {
+  switch (code) {
     case 'auth/invalid-credential':
     case 'auth/user-not-found':
     case 'auth/wrong-password':
@@ -56,6 +58,6 @@ function formatError(codigo) {
     case 'auth/popup-closed-by-user':
       return 'O login com o Google foi cancelado.';
     default:
-      return 'Ocorreu um erro ao tentar entrar. Verifique sua conexão.';
+      return code;
   }
 }
