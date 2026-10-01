@@ -19,9 +19,11 @@ export function Button({
   type = "button",
   variant = "primary",
   iconSrc = "",
+  onClick
 }) {
   return (
     <button
+      onClick={onClick}
       type={type}
       className={`
         flex

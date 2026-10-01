@@ -5,6 +5,7 @@ import { navigateTo } from "../../router.js";
 import { loginSchema } from "../../core/validators/authSchema.js";
 import { z } from "zod";
 import { createRef } from "jsx-dom";
+import { loginWithEmail, loginWithGoogle } from "../../core/auth/login.js";
 
 export function loginPage(container) {
   const inputsRef = {
@@ -12,7 +13,7 @@ export function loginPage(container) {
     password: createRef(),
   };
 
-  function handleSubmitLogin(e) {
+  async function handleSubmitLogin(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
@@ -31,6 +32,20 @@ export function loginPage(container) {
         }
       });
     }
+
+    try {
+      loginWithEmail(data.email, data.password);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleLoginGoogle() {
+    try {
+      await loginWithGoogle();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function handleNavigateToRegister(e) {
@@ -43,6 +58,7 @@ export function loginPage(container) {
       <AuthLayout headingId="login-heading">
         <LoginForm
           onSubmitLogin={handleSubmitLogin}
+          onLoginGoogle={handleLoginGoogle}
           onNavigateToRegister={handleNavigateToRegister}
           inputsRef={inputsRef}
         />

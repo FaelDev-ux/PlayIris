@@ -4,7 +4,14 @@ import { Button } from "../ui/Button.jsx";
 import googleIcon from "../../assets/images/google.svg";
 import { TermsCheckbox } from "./TermsCheckbox.jsx";
 
-export function RegisterForm({ onSubmitRegister, onNavigateToLogin, onNavigateToTerms, onNavigateToPrivacity, inputsRef }) {
+export function RegisterForm({
+  onSubmitRegister,
+  onNavigateToLogin,
+  onNavigateToTerms,
+  onNavigateToPrivacity,
+  inputsRef,
+  onGoogleRegister,
+}) {
   return (
     <form
       id="form-registro"
@@ -67,13 +74,12 @@ export function RegisterForm({ onSubmitRegister, onNavigateToLogin, onNavigateTo
         required
       />
 
-      <TermsCheckbox onNavigateToTerms={onNavigateToTerms} onNavigateToPrivacity={onNavigateToPrivacity} />
-
-      <Button
-        text="Criar conta"
-        type="submit"
-        variant="primary"
+      <TermsCheckbox
+        onNavigateToTerms={onNavigateToTerms}
+        onNavigateToPrivacity={onNavigateToPrivacity}
       />
+
+      <Button text="Criar conta" type="submit" variant="primary" />
 
       <div className="my-4 flex items-center gap-3 text-xs font-bold uppercase text-cinza-ardosia">
         <span className="h-px flex-1 bg-cinza-nuvem"></span>
@@ -85,6 +91,7 @@ export function RegisterForm({ onSubmitRegister, onNavigateToLogin, onNavigateTo
         text="Criar conta com o Google"
         variant="outline"
         iconSrc={googleIcon}
+        onClick={onGoogleRegister}
       />
 
       <p className="mb-0 mt-6 text-center text-xs text-cinza-ardosia">

@@ -4,7 +4,7 @@ import { RememberLoginCheckbox } from "./rememberLoginCheckbox.jsx";
 import { Button } from "../ui/Button.jsx";
 import googleIcon from "../../assets/images/google.svg";
 
-export function LoginForm({ onSubmitLogin, onNavigateToRegister, inputsRef }) {
+export function LoginForm({ onSubmitLogin, onNavigateToRegister, inputsRef, onLoginGoogle }) {
   return (
     <form
       id="form-login"
@@ -59,6 +59,7 @@ export function LoginForm({ onSubmitLogin, onNavigateToRegister, inputsRef }) {
         text="Continuar com o google"
         variant="outline"
         iconSrc={googleIcon}
+        onClick={onLoginGoogle}
       />
 
       <p className="mb-0 mt-6 text-center text-xs text-cinza-ardosia">

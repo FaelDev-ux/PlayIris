@@ -4,6 +4,8 @@ import { AuthLayout } from "../../components/auth/AuthLayout.jsx";
 import { navigateTo } from "../../router.js";
 import { registerSchema } from "../../core/validators/authSchema.js";
 import { createRef } from "jsx-dom";
+import { registerUser } from "../../core/auth/register.js";
+import { loginWithGoogle } from "../../core/auth/login.js";
 
 export function registerPage(container) {
   const inputsRef = {
@@ -13,7 +15,7 @@ export function registerPage(container) {
     confirmPassword: createRef(),
   };
 
-  function handleSubmitRegister(e) {
+  async function handleSubmitRegister(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
@@ -46,6 +48,24 @@ export function registerPage(container) {
         }
       });
     }
+
+    try {
+      await registerUser(
+        dataFormatted.fullName,
+        dataFormatted.email,
+        dataFormatted.password.password,
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleGoogleRegister() {
+    try {
+      await loginWithGoogle();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function handleNavigateToLogin(e) {
@@ -68,6 +88,7 @@ export function registerPage(container) {
       <AuthLayout headingId="register-heading">
         <RegisterForm
           onSubmitRegister={handleSubmitRegister}
+          onGoogleRegister={handleGoogleRegister}
           onNavigateToLogin={handleNavigateToLogin}
           onNavigateToPrivacity={handleNavigateToPrivacity}
           onNavigateToTerms={handleNavigateToTerms}
