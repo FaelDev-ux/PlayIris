@@ -4,7 +4,7 @@ import { RememberLoginCheckbox } from "./rememberLoginCheckbox.jsx";
 import { Button } from "../ui/Button.jsx";
 import googleIcon from "../../assets/images/google.svg";
 
-export function LoginForm({ onSubmitLogin, onNavigateToRegister, inputsRef, onLoginGoogle }) {
+export function LoginForm({ onSubmitLogin, onNavigateToRegister, onNavigateToForgotPassword, inputsRef, onLoginGoogle }) {
   return (
     <form
       id="form-login"
@@ -42,6 +42,7 @@ export function LoginForm({ onSubmitLogin, onNavigateToRegister, inputsRef, onLo
         placeholder="Digite sua senha"
         autocomplete="password"
         topLink
+        topLinkOnClick={onNavigateToForgotPassword}
         required
       />
 

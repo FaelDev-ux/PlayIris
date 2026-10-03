@@ -53,6 +53,11 @@ export function loginPage(container) {
     navigateTo("/cadastro");
   }
 
+  function handleNavigateToForgotPassword(e) {
+    e.preventDefault();
+    navigateTo("/recuperar-senha");
+  }
+
   container.replaceChildren(
     <PageBackground>
       <AuthLayout headingId="login-heading">
@@ -60,6 +65,7 @@ export function loginPage(container) {
           onSubmitLogin={handleSubmitLogin}
           onLoginGoogle={handleLoginGoogle}
           onNavigateToRegister={handleNavigateToRegister}
+          onNavigateToForgotPassword={handleNavigateToForgotPassword}
           inputsRef={inputsRef}
         />
       </AuthLayout>

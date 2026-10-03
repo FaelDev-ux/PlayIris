@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "emulators": "firebase emulators:start"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   "homepage": "https://github.com/FaelDev-ux/PlayIris#readme",
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "firebase-tools": "^15.32.1",
     "tailwindcss": "^4.3.3",
     "vite": "^8.3.0"
   },

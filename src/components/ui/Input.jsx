@@ -11,6 +11,7 @@ export function Input({
   autocomplete = "",
   minLength,
   topLink = false,
+  topLinkOnClick,
   onInputCallback,
   ref
 }) {
@@ -20,7 +21,9 @@ export function Input({
   const wrapper = (
     <div className="flex flex-col gap-1 mb-4 w-full">
       {type === "password" && topLink && (
-        <span className="text-azul-iris text-xs flex-end font-bold cursor-pointer z-1 -mb-5 flex justify-end">
+        <span
+          onClick={topLinkOnClick} 
+          className="text-azul-iris text-xs flex-end font-bold cursor-pointer z-1 -mb-5 flex justify-end">
           Esqueceu a senha?
         </span>
       )}

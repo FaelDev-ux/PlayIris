@@ -1,5 +1,7 @@
 import { registerPage } from './views/auth/register.jsx';
 import { loginPage } from './views/auth/login.jsx';
+import { forgotPasswordPage } from './views/auth/forgotPassword.jsx';
+import { resetPasswordPage } from './views/auth/resetPassword.jsx';
 
 const appContainer = document.getElementById('app');
 
@@ -43,6 +45,12 @@ export function navigateTo(rota) {
       break;
     case '/login':
       UnmountFunction = loginPage(appContainer);
+      break;
+    case '/recuperar-senha':
+      UnmountFunction = forgotPasswordPage(appContainer);
+      break;
+    case '/redefinir-senha':
+      UnmountFunction = resetPasswordPage(appContainer);
       break;
     default:
       appContainer.innerHTML = '<h1 class="p-8">404 - Página não encontrada</h1>';
