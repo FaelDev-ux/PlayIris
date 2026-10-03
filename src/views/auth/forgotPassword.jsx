@@ -2,7 +2,7 @@ import { ForgotPasswordForm } from "../../components/auth/ForgotPasswordForm.jsx
 import { PageBackground } from "../../components/layout/PageBackground.jsx";
 import { AuthLayout } from "../../components/auth/AuthLayout.jsx";
 import { navigateTo } from "../../router.js";
-import { forgotPasswordSchema } from "../../core/validators/authSchema.js";
+import { emailSchema } from "../../core/validators/authSchema.js";
 import { createRef } from "jsx-dom";
 import { sendResetPasswordEmail } from "../../core/auth/passwordReset.js";
 
@@ -16,8 +16,8 @@ export function forgotPasswordPage(container) {
       <PageBackground>
         <AuthLayout headingId="forgot-heading">
           <ForgotPasswordForm
-            onSubmitForgotPassword = {handleSubmitForgotPassword}
-            onNavigateToLogin = {handleNavigateToLogin}
+            onSubmitForgotPassword={handleSubmitForgotPassword}
+            onNavigateToLogin={handleNavigateToLogin}
             inputsRef={inputsRef}
             successMessage={successMsg}
           />
@@ -31,10 +31,11 @@ export function forgotPasswordPage(container) {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
-    const result = forgotPasswordSchema.safeParse(data);
+    const result = emailSchema.safeParse(data);
 
     if (!result.success) {
-      const errorMessage = result.error.issues[0]?.message || "E-mail inválido.";
+      const errorMessage =
+        result.error.issues[0]?.message || "E-mail inválido.";
       inputsRef.email.current?.setError(errorMessage);
       return;
     }

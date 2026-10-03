@@ -21,6 +21,6 @@ export const registerSchema = z.object({
   terms: z.string(),
 })
 
-export const forgotPasswordSchema = z.object({
+export const emailSchema = z.object({
   email: z.email("Insira um e-mail válido."),
 })

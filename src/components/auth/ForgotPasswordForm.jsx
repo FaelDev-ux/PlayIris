@@ -18,13 +18,18 @@ export function ForgotPasswordForm({
           Recuperar senha
         </h2>
         <p className="mb-0 text-sm text-cinza-ardosia">
-          Informe deu email cadastrado e enviaremos um link para você redefinir sua senha.
+          Informe seu e-mail cadastrado e enviaremos um link para você redefinir
+          sua senha.
         </p>
       </header>
       {successMessage && (
-        <div className="mb-4 p-2 rounded-neo border-neo-thin bg-green-50 text-xs font-semibold text-green-700">
+        <li class="flex min-h-touch-target items-center gap-2 rounded-neo border-neo-thin text-xs font-semibold bg-verde-salvia/10 mb-4 px-3 py-2">
+          <span
+            class="h-3 w-3 border shrink-0 rounded-full bg-verde-salvia"
+            aria-hidden="true"
+          ></span>
           {successMessage}
-        </div>
+        </li>
       )}
 
       <Input
@@ -39,15 +44,14 @@ export function ForgotPasswordForm({
       />
 
       <Button
-        text="Enviar link de redefinição"
+        text="Enviar link"
         type="submit"
         variant="primary"
       />
 
       <p className="mb-0 mt-6 text-center text-xs text-cinza-ardosia">
-        Lembrar da senha? {" "}
-
-        <a 
+        Lembrou da senha?{" "}
+        <a
           className="cursor-pointer font-bold text-azul-iris underline underline-offset-2"
           href="/login"
           onClick={onNavigateToLogin}
@@ -55,7 +59,6 @@ export function ForgotPasswordForm({
           Voltar para o login
         </a>
       </p>
-
     </form>
-  )
+  );
 }
