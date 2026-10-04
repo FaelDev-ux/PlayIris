@@ -13,6 +13,7 @@
   --color-lilas-cognitivo: #a78bfa;
   --color-coral-suave: #fb923c;
   --color-ciano-fluido: #2dd4bf;
+  --color-amarelo-estrela: #FBBF23;
 
   --radius-neo: 16px;
   /* bordas sem pontas e seguras quanto às normas */
@@ -86,6 +87,16 @@
   border-left-width: 2px;
   border-bottom-width: 4px;
   border-right-width: 4px;
+}
+
+@utility border-neo-max {
+  /* versão mais grossa para inputs e componentes maiores */
+  border-style: solid;
+  border-color: var(--color-azul-meia-noite);
+  border-top-width: 3px;
+  border-left-width: 3px;
+  border-bottom-width: 6px;
+  border-right-width: 6px;
 }
 
 @utility border-neo-thin {

@@ -2,6 +2,7 @@ import { registerPage } from './views/auth/register.jsx';
 import { loginPage } from './views/auth/login.jsx';
 import { forgotPasswordPage } from './views/auth/forgotPassword.jsx';
 import { resetPasswordPage } from './views/auth/resetPassword.jsx';
+import { playGamePage } from './views/child-path/games/playGamePage.jsx';
 
 const appContainer = document.getElementById('app');
 
@@ -25,14 +26,14 @@ function clearContainer() {
 
 export function navigateTo(rota) {
 
-  const protectedRoutes = ['/adult-dashboard', '/child-path'];
+  const protectedRoutes = ['/adult-dashboard', '/child-path', '/games'];
 
   if (protectedRoutes.includes(rota) && !isUserLoggedIn) {
     rota = '/login';
   }
 
   if ((rota === '/login' || rota === '/cadastro') && isUserLoggedIn) {
-    rota = '/adult-dashboard';
+    rota = '/games';
   }
 
   clearContainer();
@@ -51,6 +52,9 @@ export function navigateTo(rota) {
       break;
     case '/redefinir-senha':
       UnmountFunction = resetPasswordPage(appContainer);
+      break;
+    case '/games':
+      UnmountFunction = playGamePage(appContainer);
       break;
     default:
       appContainer.innerHTML = '<h1 class="p-8">404 - Página não encontrada</h1>';
