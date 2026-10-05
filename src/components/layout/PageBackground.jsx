@@ -1,10 +1,11 @@
 import { ColorBar } from "../ui/ColorBar.jsx";
+import cn from "../../utils/cn.js";
 
-export function PageBackground({ children }) {
+export function PageBackground({ children, className, contentClassName }) {
   return (
-    <div className="min-h-screen bg-gelo-artico flex flex-col">
+    <div className={cn('min-h-screen bg-gelo-artico flex flex-col', className)}>
       <ColorBar />
-      <div className="flex-1">{children}</div>
+      <div className={cn('flex-1', contentClassName)}>{children}</div>
     </div>
   );
 }

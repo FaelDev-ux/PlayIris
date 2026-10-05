@@ -8,16 +8,13 @@ import soundOffIcon from "../../../assets/images/icons/sound-off.svg";
 import expandIcon from "../../../assets/images/icons/expand.svg";
 import minimizeIcon from "../../../assets/images/icons/minimize.svg";
 import { logout } from "../../../core/auth/login.js";
+import { mountMonteBichos } from "../../../games/monte-bichos/index.jsx";
 
 export function playGamePage(container) {
   const handleBack = () => {
     console.log("Navegar de volta para o mapa/trilha");
     //navigateTo('/trilha');
     logout();
-  };
-
-  const handleInstructions = () => {
-    console.log("Abrir modal de instruções em áudio/texto");
   };
 
   let isSoundOn = true;
@@ -51,12 +48,12 @@ export function playGamePage(container) {
   };
 
   container.replaceChildren(
-    <PageBackground className="flex h-screen w-screen flex-col bg-gelo-artico overflow-hidden">
-      <GameHeader onBack={handleBack} onInstructions={handleInstructions} />
+    <PageBackground className="h-dvh min-h-0 overflow-hidden" contentClassName="flex min-h-0 flex-col">
+      <GameHeader onBack={handleBack} />
 
-      <div className="gameScreen flex flex-col flex-1 overflow-hidden border-neo-max rounded-neo mx-5 bg-[#E2E8EF]">
+      <div className="gameScreen flex min-h-0 flex-col flex-1 overflow-hidden border-neo-max rounded-neo mx-2 mb-2 sm:mx-5 bg-[#E2E8EF]">
         <GameArea>
-          <div id="game-canvas" className="w-full h-full min-h-180"></div>
+          <div id="game-canvas" className="w-full h-full"></div>
         </GameArea>
 
         <GameControls
@@ -71,7 +68,10 @@ export function playGamePage(container) {
     </PageBackground>,
   );
 
+  const unmountGame = mountMonteBichos(container.querySelector('#game-canvas'));
+
   return function desmontar() {
+    unmountGame();
     container.innerHTML = "";
   };
 }

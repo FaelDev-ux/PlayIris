@@ -2,9 +2,9 @@ import { Button } from "../ui/Button.jsx";
 import arrowBackIcon from "../../assets/images/icons/arrow-back.svg";
 import starIcon from "../../assets/images/icons/star.svg";
 
-export function GameHeader({ onBack, onInstructions }) {
+export function GameHeader({ onBack }) {
   return (
-    <header className="flex w-full justify-between items-center gap-10 p-5">
+    <header className="flex w-full shrink-0 flex-wrap justify-between items-center gap-3 p-3 sm:p-5">
       <Button
         text="Voltar aos jogos"
         iconSrc={arrowBackIcon}
@@ -13,23 +13,7 @@ export function GameHeader({ onBack, onInstructions }) {
         className="px-5 py-0 w-auto"
       />
 
-      <div className="flex items-center gap-5">
-        <div className="flex gap-2">
-          <Button
-            text="Í"
-            onClick={onInstructions}
-            className="text-lg font-bold min-h-0! w-auto p-4 size-5 rounded-xl"
-          />
-
-          <div className="flex flex-col">
-            <h3 className="mb-0">Como jogar?</h3>
-
-            <p className="mb-0 text-cinza-ardosia font-semibold text-sm">
-              Instruções
-            </p>
-          </div>
-        </div>
-
+      <div className="contents">
         <div className="flex min-h-touch-target items-center gap-2 rounded-neo border-neo-thin bg-branco-porcelana px-3 py-2 text-xs font-bold">
           <span
             class="h-3 w-3 border shrink-0 rounded-full bg-verde-salvia "

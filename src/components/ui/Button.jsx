@@ -12,9 +12,11 @@ export function Button({
   iconSrc = "",
   onClick,
   className,
+  ariaLabel,
 }) {
   return (
     <button
+      aria-label={ariaLabel}
       onClick={onClick}
       type={type}
       className={cn(
