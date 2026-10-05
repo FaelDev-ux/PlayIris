@@ -1,0 +1,19 @@
+MONTE O BICHO — TARTARUGA GEOMÉTRICA
+
+Sete grupos: par de patas dianteiras, par de patas traseiras, metade direita do casco, metade esquerda do casco, cabeça/pescoço, rabo e barriga/casco inferior.
+Esquerda e direita são as de quem olha a imagem.
+A pata dianteira próxima foi restaurada até o ombro e aparece à frente da barriga, como na referência. O grupo patas-dianteiras deve ficar acima de barriga-casco-inferior na sobreposição.
+As cores principais foram amostradas da referência. Todos os contornos usam segmentos retos. Fundo transparente, sem imagem raster incorporada.
+
+Área comum: viewBox="0 0 1024 559". Sobreponha todas as peças na origem (0,0), com a mesma escala.
+Ordem do fundo para a frente:
+1. rabo.svg
+2. patas-traseiras.svg
+3. barriga-casco-inferior.svg
+4. cabeca-pescoco.svg
+5. patas-dianteiras.svg
+6. casco-esquerdo.svg
+7. casco-direito.svg
+
+Apenas as bordas de encontro entre grupos têm tracejado, idêntico nas duas peças. Os contornos externos e os detalhes dentro de cada grupo são contínuos. Não há símbolos, números ou cores que indiquem pares de encaixe.
+Não recorte cada SVG separadamente: isso mudaria a origem compartilhada.

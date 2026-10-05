@@ -1,0 +1,17 @@
+MONTE O BICHO — SAPO GEOMÉTRICO
+
+Seis grupos: olho direito, olho esquerdo, cabeça, tronco incluindo as patas dianteiras, perna traseira direita e perna traseira esquerda.
+Direita e esquerda são as de quem olha a imagem. Cada olho inclui sua região verde externa, a íris e a pupila.
+Contornos redesenhados em segmentos retos. Fundo transparente, sem imagem raster incorporada.
+
+Área comum: viewBox="0 0 1024 559". Sobreponha as peças na origem (0,0), com a mesma escala.
+Ordem do fundo para a frente:
+1. perna-traseira-esquerda.svg
+2. perna-traseira-direita.svg
+3. tronco.svg
+4. cabeca.svg
+5. olho-esquerdo.svg
+6. olho-direito.svg
+
+Tracejado apenas nos encontros entre grupos, idêntico nas peças vizinhas. Contornos externos e detalhes dentro da mesma peça são contínuos. Não há números, símbolos ou cores que indiquem pares de encaixe.
+Não recorte cada SVG separadamente: isso mudaria a origem compartilhada.

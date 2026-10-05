@@ -1,0 +1,21 @@
+MONTE O BICHO — CACHORRO
+
+Vetor desenhado em SVG, sem imagem raster incorporada. Fundo transparente.
+
+O arquivo cachorro-montado.svg contém exatamente sete grupos nomeados.
+Os sete SVGs individuais usam a mesma área: viewBox="0 0 1024 559".
+Para montar, sobreponha todos no mesmo ponto (x=0, y=0), com a mesma escala.
+Preserve esta ordem, do fundo para a frente:
+1. rabo.svg
+2. patas-traseiras.svg
+3. tronco.svg
+4. patas-dianteiras.svg
+5. cabeca.svg
+6. orelha-esquerda.svg
+7. orelha-direita.svg
+
+As orelhas são nomeadas conforme a esquerda e a direita de quem olha a imagem.
+As bordas externas têm contorno contínuo. Apenas os encontros entre grupos têm tracejado, idêntico nas duas peças. Não há símbolos, números ou cores para indicar pares de encaixe. As marcas de articulação foram removidas.
+Os pares de patas incluem a pata próxima e a pata ao fundo.
+Não recorte automaticamente cada SVG: isso altera a origem compartilhada.
+As cores foram amostradas da referência; a textura raster foi convertida em preenchimentos sólidos.

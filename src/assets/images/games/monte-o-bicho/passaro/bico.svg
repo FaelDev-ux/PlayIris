@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1408" height="768" viewBox="0 0 1408 768">
+<title>Bico</title>
+<g id="bico" data-parte="Bico"><path d="M 901,179 L 916,163 L 933,163 L 956,171 L 973,185 L 984,198 L 973,199 L 954,213 L 939,218 L 916,220 L 901,214 L 884,195 Z" fill="#d1b76d" /><path d="M 933,163 L 956,171 L 973,185 L 984,198 L 973,199 L 954,213 L 939,218" fill="none" stroke="#2a343d" stroke-width="4.4" stroke-linejoin="miter" stroke-miterlimit="3"/><path d="M 884,195 L 920,199 L 973,199" fill="none" stroke="#2a343d" stroke-width="3.6" stroke-linejoin="miter" stroke-miterlimit="3"/><path d="M 901,179 L 884,195 L 901,214 L 916,220 L 939,218" fill="none" stroke="#2a343d" stroke-width="4" stroke-dasharray="10 7" stroke-linecap="butt" stroke-linejoin="miter"/><path d="M 901,179 L 916,163 L 933,163" fill="none" stroke="#2a343d" stroke-width="4" stroke-dasharray="10 7" stroke-linecap="butt" stroke-linejoin="miter"/></g>
+</svg>

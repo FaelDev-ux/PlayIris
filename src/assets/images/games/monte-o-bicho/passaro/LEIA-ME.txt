@@ -1,0 +1,18 @@
+MONTE O BICHO — PÁSSARO GEOMÉTRICO
+
+Seis grupos: patas, cabeça, bico, topete, asa e rabo.
+A peça cabeça também inclui o corpo para manter os seis grupos solicitados.
+As cores principais foram amostradas da referência. Os contornos foram redesenhados apenas com segmentos retos; não há curvas ou imagens raster incorporadas.
+
+Área comum: viewBox="0 0 1408 768". Fundo transparente.
+Para montar, sobreponha as seis peças na origem (0,0), com a mesma escala.
+Ordem do fundo para a frente:
+1. rabo.svg
+2. patas.svg
+3. cabeca.svg
+4. asa.svg
+5. topete.svg
+6. bico.svg
+
+Contornos externos contínuos; tracejado somente nos encontros entre grupos, idêntico nas duas peças. Detalhes dentro de uma mesma peça usam linhas contínuas. Sem números, símbolos ou cores que indiquem pares de encaixe.
+Não recorte os SVGs individualmente: isso mudaria sua origem compartilhada.

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="559" viewBox="0 0 1024 559">
+<title>Rabo</title>
+<g id="rabo" data-parte="Rabo"><path d="M 351,218 L 313,207 L 284,176 L 268,127 L 254,151 L 254,189 L 286,236 L 329,255 Z" fill="#816c57" /><path d="M 351,218 L 313,207 L 284,176 L 268,127 L 254,151 L 254,189 L 286,236 L 329,255" fill="none" stroke="#70543f" stroke-width="3.2" stroke-linejoin="round"/><path d="M 329,255 L 351,218" fill="none" stroke="#70543f" stroke-width="3.2" stroke-dasharray="9 6" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>

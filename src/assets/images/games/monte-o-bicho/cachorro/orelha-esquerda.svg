@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="559" viewBox="0 0 1024 559">
+<title>Orelha esquerda</title>
+<g id="orelha-esquerda" data-parte="Orelha esquerda"><path d="M 635,39 L 608,29 L 537,74 L 549,121 L 576,148 L 598,127 Z" fill="#816c57" /><path d="M 635,39 L 608,29 L 537,74 L 549,121 L 576,148 L 598,127" fill="none" stroke="#70543f" stroke-width="3.2" stroke-linejoin="round"/><path d="M 635,39 L 598,127" fill="none" stroke="#70543f" stroke-width="3.2" stroke-dasharray="9 6" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>
