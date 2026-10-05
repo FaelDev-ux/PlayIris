@@ -26,15 +26,15 @@ function clearContainer() {
 
 export function navigateTo(rota) {
 
-  const protectedRoutes = ['/adult-dashboard', '/child-path', '/games'];
+  // const protectedRoutes = ['/adult-dashboard', '/child-path', '/games'];
 
-  if (protectedRoutes.includes(rota) && !isUserLoggedIn) {
-    rota = '/login';
-  }
+  // if (protectedRoutes.includes(rota) && !isUserLoggedIn) {
+  //   rota = '/login';
+  // }
 
-  if ((rota === '/login' || rota === '/cadastro') && isUserLoggedIn) {
-    rota = '/games';
-  }
+  // if ((rota === '/login' || rota === '/cadastro') && isUserLoggedIn) {
+  //   rota = '/games';
+  // }
 
   clearContainer();
 
