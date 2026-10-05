@@ -38,7 +38,7 @@
     line-height: 1.625;
     -webkit-font-smoothing: antialiased;
   }
-  
+
   h1,
   h2,
   h3,
@@ -107,4 +107,8 @@
   border-left-width: 1.5px;
   border-bottom-width: 3px;
   border-right-width: 3px;
+}
+
+.firebase-emulator-warning {
+  display: none;
 }
