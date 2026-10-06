@@ -47,6 +47,8 @@ export function registerPage(container) {
           inputRefObject.current.setError(issue.message);
         }
       });
+
+      return;
     }
 
     try {
@@ -56,7 +58,7 @@ export function registerPage(container) {
         dataFormatted.password.password,
       );
     } catch (error) {
-      console.log(error);
+      inputsRef.email.current?.setError(String(error));
     }
   }
 

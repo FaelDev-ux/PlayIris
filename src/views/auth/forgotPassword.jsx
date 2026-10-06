@@ -33,6 +33,8 @@ export function forgotPasswordPage(container) {
 
     const result = emailSchema.safeParse(data);
 
+    inputsRef.email.current?.setError(null);
+
     if (!result.success) {
       const errorMessage =
         result.error.issues[0]?.message || "E-mail inválido.";

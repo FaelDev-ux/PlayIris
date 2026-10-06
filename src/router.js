@@ -18,7 +18,7 @@ window.addEventListener('authStateChanged', (event) => {
     currentUrl.pathname = "/login";
   }
 
-  navigateTo(currentUrl.href, { history: "replace" });
+  navigateTo(currentUrl.href, { historyMode: "replace" });
 });
 
 function clearContainer() {
@@ -29,8 +29,37 @@ function clearContainer() {
   appContainer.innerHTML = '';
 }
 
-function navigateTo(rota, { historyMode = "push" } = {}) {
+export function navigateTo(rota, { historyMode = "push" } = {}) {
   const url = new URL(rota, window.location.origin);
+  const protectedRoutes = [
+    // "/adult-dashboard",
+    // "/child-path",
+    // "/games",
+  ];
+
+  let redirected = false;
+
+  // if (url.pathname === "/") {
+  //   url.pathname = "/login";
+  //   redirected = true;
+  // }
+
+  // if (protectedRoutes.includes(url.pathname) && !isUserLoggedIn) {
+  //   url.pathname = "/login";
+  //   redirected = true;
+  // }
+
+  // if (["/login", "/cadastro"].includes(url.pathname) && isUserLoggedIn) {
+  //   url.pathname = "/games";
+  //   redirected = true;
+  // }
+
+  if (redirected) {
+    url.search = "";
+    url.hash = "";
+    historyMode = "replace";
+  }
+
   clearContainer();
 
   if (historyMode === "push") {
@@ -38,17 +67,6 @@ function navigateTo(rota, { historyMode = "push" } = {}) {
   } else if (historyMode === "replace") {
     window.history.replaceState(null, "", url.href);
   }
-
-  // const protectedRoutes = ['/adult-dashboard', '/child-path', '/games'];
-
-  // if (protectedRoutes.includes(rota) && !isUserLoggedIn) {
-  //   rota = '/login';
-  // }
-
-  // if ((rota === '/login' || rota === '/cadastro') && isUserLoggedIn) {
-  //   rota = '/games';
-  // }
-
 
   switch (url.pathname) {
     case '/cadastro':
@@ -73,5 +91,5 @@ function navigateTo(rota, { historyMode = "push" } = {}) {
 }
 
 window.addEventListener('popstate', () => {
-  navigateTo(window.location.href, { history: "none" });
+  navigateTo(window.location.href, { historyMode: "none" });
 });

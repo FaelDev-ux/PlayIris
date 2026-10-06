@@ -58,6 +58,6 @@ function formatError(code) {
     case 'auth/popup-closed-by-user':
       return 'O login com o Google foi cancelado.';
     default:
-      return code;
+      return 'Ocorreu um erro na autenticação. Tente novamente.';
   }
 }

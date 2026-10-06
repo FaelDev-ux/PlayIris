@@ -12,8 +12,8 @@ export function resetPasswordPage(container) {
     confirmPassword: createRef(),
   };
 
-  const urlParams = new
-  URLSearchParams(window.location.search);
+  let redirectTimer;
+  const urlParams = new URLSearchParams(window.location.search);
   const oobCode = urlParams.get("oobCode");
 
   function render(successMsg = "") {
@@ -34,37 +34,40 @@ export function resetPasswordPage(container) {
   async function handleSubmitResetPassword(e) {
     e.preventDefault();
 
-    if(!oobCode) {
-      inputsRef.password.current?.setError("Código de redefinição de senha está ausente");
+    if (!oobCode) {
+      inputsRef.password.current?.setError(
+        "Código de redefinição de senha está ausente",
+      );
       return;
     }
 
-  const formData = new FormData(e.target);
-  const data = Object.fromEntries(formData.entries());
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
 
-  const result = passwordSchema.safeParse(data);
+    const result = passwordSchema.safeParse(data);
 
-  if (!result.success) {
-    result.error.issues.forEach((issue) => {
-      const field = issue.path[0] || "confirmPassword";
-      if (inputsRef[field]?.current) {
-        inputsRef[field].current.setError(issue.message);
-      }
-    });
-    return;
-  }
-  try {
-    await confirmNewPassword(oobCode, data.password);
-    render("Senha redefinida com sucesso! Redirencionando para a pagina de login...");
+    if (!result.success) {
+      result.error.issues.forEach((issue) => {
+        const field = issue.path[0] || "confirmPassword";
+        if (inputsRef[field]?.current) {
+          inputsRef[field].current.setError(issue.message);
+        }
+      });
+      return;
+    }
+    try {
+      await confirmNewPassword(oobCode, data.password);
+      render(
+        "Senha redefinida com sucesso! Redirencionando para a pagina de login...",
+      );
 
-    setTimeout(() => {
-      navigateTo("/login");
-    }, 3000);
-  } catch  (error){
-    inputsRef.password.current?.setError(error);
+      redirectTimer = setTimeout(() => {
+        navigateTo("/login");
+      }, 3000);
+    } catch (error) {
+      inputsRef.password.current?.setError(error);
     }
   }
-
 
   function handleNavigateToLogin(e) {
     e.preventDefault();
@@ -74,7 +77,7 @@ export function resetPasswordPage(container) {
   render();
 
   return function desmontar() {
+    clearTimeout(redirectTimer);
     container.innerHTML = "";
-  }
-
-  }
+  };
+}

@@ -31,12 +31,14 @@ export function loginPage(container) {
           inputRefObject.current.setError(messages[0]);
         }
       });
+
+      return;
     }
 
     try {
-      loginWithEmail(data.email, data.password);
+      await loginWithEmail(data.email, data.password);
     } catch (error) {
-      console.log(error);
+      inputsRef.password.current?.setError(String(error));
     }
   }
 
