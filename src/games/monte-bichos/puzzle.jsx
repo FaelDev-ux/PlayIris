@@ -39,7 +39,7 @@ export function mountAnimalPuzzle(gameContainer, animalConfig, { onContinue } = 
             {pieces.map((piece) => {
               const preview = piece.element.cloneNode(true);
               preview.removeAttribute('id');
-              return <div ref={(element) => (piece.card = element)} className="relative flex shrink-0 items-center justify-center rounded-xl bg-white/80 cursor-grab" aria-label={piece.label}>
+              return <div ref={(element) => (piece.card = element)} className="max-w-60 relative flex shrink-0 items-center justify-center rounded-xl bg-white/80 cursor-grab" aria-label={piece.label}>
                 <svg ref={(element) => (piece.preview = element)} xmlns="http://www.w3.org/2000/svg" className="pointer-events-none h-full w-full" aria-hidden="true">{preview}</svg>
               </div>;
             })}

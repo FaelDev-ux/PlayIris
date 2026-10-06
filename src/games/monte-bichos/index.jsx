@@ -46,8 +46,10 @@ export function mountMonteBichos(gameContainer) {
   }
 
   showHome();
-  return function unmountMonteBichos() {
-    unmountPuzzle?.();
-    root.remove();
+  return {
+    destroy() {
+      unmountPuzzle?.();
+      root.remove();
+    },
   };
 }

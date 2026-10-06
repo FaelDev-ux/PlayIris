@@ -13,10 +13,13 @@ export function Button({
   onClick,
   className,
   ariaLabel,
+  ariaPressed,
+  textClassName,
 }) {
   return (
     <button
       aria-label={ariaLabel}
+      aria-pressed={ariaPressed}
       onClick={onClick}
       type={type}
       className={cn(
@@ -32,7 +35,7 @@ export function Button({
         <img src={iconSrc} alt="" className="h-4 w-4" aria-hidden="true" />
       )}
 
-      {text && <span>{text}</span>}
+      {text && <span className={textClassName}>{text}</span>}
     </button>
   );
 }
