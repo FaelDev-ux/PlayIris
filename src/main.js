@@ -9,4 +9,4 @@ onAuthStateChanged(auth, (user) => {
     window.dispatchEvent(authEvent);
 });
 
-navigateTo(window.location.pathname);
+navigateTo(window.location.href);
