@@ -127,9 +127,11 @@ export function mountAnimalPuzzle(gameContainer, animalConfig, { onContinue } = 
         },
         move(event) {
           const inverse = world.getScreenCTM().inverse();
-          piece.position.x += inverse.a * event.dx + inverse.c * event.dy;
-          piece.position.y += inverse.b * event.dx + inverse.d * event.dy;
           const box = piece.bounds;
+          // Recalcula pelo cursor para não acumular deslocamento ao limitar nas bordas.
+          const point = new DOMPoint(event.clientX, event.clientY).matrixTransform(inverse);
+          piece.position.x = point.x - box.x - box.width / 2;
+          piece.position.y = point.y - box.y - box.height / 2;
           const { padding, offsetX, offsetY, scale, width, height } = layout;
           piece.position.x = Math.max((padding - offsetX) / scale - box.x, Math.min(piece.position.x, (width - padding - offsetX) / scale - box.x - box.width));
           piece.position.y = Math.max((padding - offsetY) / scale - box.y, Math.min(piece.position.y, (height - padding - offsetY) / scale - box.y - box.height));

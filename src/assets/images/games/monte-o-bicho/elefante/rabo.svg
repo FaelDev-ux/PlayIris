@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1697" height="927" viewBox="0 0 1697 927">
+<title>Elefante — Monte os Bichos</title>
+<g id="rabo" data-parte="Rabo"><path d="M 420 315 C 389 365 386 430 376 468 L 363 500 L 376 505 C 397 462 399 392 418 347 L 420 315 Z" fill="#97a5ac" fill-rule="evenodd"/><path d="M 420 315 C 389 365 386 430 376 468 L 363 500" fill="none" stroke="#62564f" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="butt"/><path d="M 376 505 C 397 462 399 392 418 347" fill="none" stroke="#62564f" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="butt"/><path d="M 420 315 L 418 347" fill="none" stroke="#62564f" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="butt" stroke-dasharray="10 7"/><path d="M363 500 Q343 501 334 527 L329 541 L338 533 Q327 556 332 580 L339 571 Q339 591 330 608 Q352 600 360 582 L358 594 Q375 580 378 559 L378 570 Q394 540 380 514 Q375 502 363 500 Z" fill="#62564f" stroke="#62564f" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="butt"/></g>
+</svg>

@@ -1,0 +1,10 @@
+Monte os Bichos — Elefante
+
+8 grupos vetoriais; sem imagens raster incorporadas.
+Todos os SVGs: width=1697, height=927, viewBox="0 0 1697 927".
+Posicione todos os arquivos em (0,0), sem recortar margens transparentes.
+Use a mesma escala para todos os arquivos.
+Ordem de desenho (fundo para frente): rabo, patas-traseiras, patas-dianteiras, tronco, tromba, cabeca, orelhas, garras.
+Garras correspondem às unhas; as presas pertencem à cabeça.
+As curvas de encaixe são compartilhadas por ambas as peças.
+Traços sólidos: contornos externos e detalhes. Tracejados: encaixes.
