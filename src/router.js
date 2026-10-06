@@ -12,8 +12,13 @@ let isUserLoggedIn = false;
 window.addEventListener('authStateChanged', (event) => {
   isUserLoggedIn = event.detail.isAuthenticated;
 
-  const currentPath = window.location.pathname === '/' ? '/login' : window.location.pathname;
-  navigateTo(currentPath);
+  const currentUrl = new URL(window.location.href);
+
+  if (currentUrl.pathname === "/") {
+    currentUrl.pathname = "/login";
+  }
+
+  navigateTo(currentUrl.href, { history: "replace" });
 });
 
 function clearContainer() {
@@ -24,7 +29,15 @@ function clearContainer() {
   appContainer.innerHTML = '';
 }
 
-export function navigateTo(rota) {
+function navigateTo(rota, { historyMode = "push" } = {}) {
+  const url = new URL(rota, window.location.origin);
+  clearContainer();
+
+  if (historyMode === "push") {
+    window.history.pushState(null, "", url.href);
+  } else if (historyMode === "replace") {
+    window.history.replaceState(null, "", url.href);
+  }
 
   // const protectedRoutes = ['/adult-dashboard', '/child-path', '/games'];
 
@@ -36,11 +49,8 @@ export function navigateTo(rota) {
   //   rota = '/games';
   // }
 
-  clearContainer();
 
-  window.history.pushState(null, '', rota);
-
-  switch (rota) {
+  switch (url.pathname) {
     case '/cadastro':
       UnmountFunction = registerPage(appContainer);
       break;
@@ -63,5 +73,5 @@ export function navigateTo(rota) {
 }
 
 window.addEventListener('popstate', () => {
-  navigateTo(window.location.pathname);
+  navigateTo(window.location.href, { history: "none" });
 });
