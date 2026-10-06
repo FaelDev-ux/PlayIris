@@ -31,34 +31,40 @@ function clearContainer() {
 
 export function navigateTo(rota, { historyMode = "push" } = {}) {
   const url = new URL(rota, window.location.origin);
-  const protectedRoutes = [
+  // const  protectedRoutes = [
     // "/adult-dashboard",
     // "/child-path",
     // "/games",
-  ];
+  // ]; 
 
-  let redirected = false;
+  // const isProtectedRoute = protectedRoutes.some(
+  //   (route) =>
+  //     url.pathname === route ||
+  //     url.pathname.startsWith(`${route}/`),
+  // );
+
+  // let redirected = false;
 
   // if (url.pathname === "/") {
   //   url.pathname = "/login";
   //   redirected = true;
   // }
 
-  // if (protectedRoutes.includes(url.pathname) && !isUserLoggedIn) {
+  // if (isProtectedRoute && !isUserLoggedIn) {
   //   url.pathname = "/login";
   //   redirected = true;
   // }
 
-  // if (["/login", "/cadastro"].includes(url.pathname) && isUserLoggedIn) {
+  // if (!isProtectedRoute && isUserLoggedIn) {
   //   url.pathname = "/games";
   //   redirected = true;
   // }
 
-  if (redirected) {
-    url.search = "";
-    url.hash = "";
-    historyMode = "replace";
-  }
+  // if (redirected) {
+  //   url.search = "";
+  //   url.hash = "";
+  //   historyMode = "replace";
+  // }
 
   clearContainer();
 
