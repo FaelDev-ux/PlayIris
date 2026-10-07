@@ -1,9 +1,12 @@
 import interact from "interactjs";
+import { Button } from '../../components/ui/Button.jsx';
+import { createCelebration } from './celebration.js';
+import { getSceneLayout } from './scene.js';
 
 export function mountAnimalPuzzle(
   gameContainer,
   animalConfig,
-  { onContinue } = {},
+  { onContinue, soundEnabled = true } = {},
 ) {
   const source = new DOMParser().parseFromString(
     animalConfig.svg,
@@ -16,9 +19,16 @@ export function mountAnimalPuzzle(
     position: { x: 0, y: 0 },
     dragging: false,
   }));
-  let stage, world, referenceGroup, tray, boardContent;
+  let stage, world, referenceGroup, tray;
   let layout;
   let selectedPiece = null;
+  let background;
+  let completed = false;
+  let sceneAnimation;
+  const celebration = createCelebration({
+    sound: animalConfig.sound, soundEnabled,
+    revealBackground() { if (background) background.style.opacity = '1'; },
+  });
   const reference = pieces.map((piece) => {
     const copy = piece.element.cloneNode(true);
     copy.removeAttribute("id");
@@ -56,11 +66,12 @@ export function mountAnimalPuzzle(
   );
   const board = (
     <div className="relative h-full min-h-0">
-      <div ref={(element) => (boardContent = element)} className="h-full">
+      <div className="h-full">
         <div
           ref={(element) => (stage = element)}
           className="relative h-full overflow-hidden"
         >
+          {animalConfig.background && <img ref={(element) => (background = element)} src={animalConfig.background} alt="" aria-hidden="true" className="pointer-events-none absolute max-w-none opacity-0 transition-opacity duration-1000 motion-reduce:transition-none" />}
           {animal}
           <div
             ref={(element) => (tray = element)}
@@ -75,7 +86,7 @@ export function mountAnimalPuzzle(
               return (
                 <div
                   ref={(element) => (piece.card = element)}
-                  className="max-w-60 relative flex shrink-0 items-center justify-center rounded-xl bg-white/80 cursor-grab"
+                  className="max-w-60 max-h-60 relative flex shrink-0 items-center justify-center rounded-xl bg-white/80 cursor-grab"
                   aria-label={piece.label}
                 >
                   <svg
@@ -100,6 +111,7 @@ export function mountAnimalPuzzle(
     piece.element.style.display = "none";
   });
   const referenceBox = referenceGroup.getBBox();
+  const supportBox = pieces.find((piece) => piece.id === animalConfig.scene?.animal.anchorPart)?.bounds ?? referenceBox;
 
   function updatePosition(piece) {
     piece.element.setAttribute(
@@ -110,6 +122,7 @@ export function mountAnimalPuzzle(
   function resizeBoard() {
     const { width, height } = stage.getBoundingClientRect();
     if (width < 1 || height < 1) return;
+    sceneAnimation?.cancel();
     const portrait = window.innerWidth < window.innerHeight;
     const padding = 12;
     const traySize = portrait
@@ -128,21 +141,31 @@ export function mountAnimalPuzzle(
           width: width - traySize - padding * 3,
           height: height - padding * 2,
         };
-    const scale = Math.max(
+    let scale = Math.max(
       0.001,
       Math.min(
         target.width / referenceBox.width,
         target.height / referenceBox.height,
       ),
     );
-    const offsetX =
+    let offsetX =
       target.x +
       target.width / 2 -
       scale * (referenceBox.x + referenceBox.width / 2);
-    const offsetY =
+    let offsetY =
       target.y +
       target.height / 2 -
       scale * (referenceBox.y + referenceBox.height / 2);
+    if (animalConfig.scene && background) {
+      const scene = getSceneLayout({ width, height }, animalConfig.scene, referenceBox, supportBox);
+      Object.assign(background.style, {
+        left: `${scene.background.x}px`, top: `${scene.background.y}px`,
+        width: `${scene.background.width}px`, height: `${scene.background.height}px`,
+      });
+      if (completed) ({ scale, offsetX, offsetY } = scene);
+    } else if (background) {
+      Object.assign(background.style, { inset: '0', width: '100%', height: '100%', objectFit: 'contain' });
+    }
     layout = { width, height, scale, offsetX, offsetY, padding, portrait };
     animal.setAttribute("viewBox", `0 0 ${width} ${height}`);
     world.setAttribute(
@@ -206,42 +229,44 @@ export function mountAnimalPuzzle(
     });
   }
   function showCompletion() {
-    let continueButton;
-    const popup = (
-      <div className="absolute inset-0 z-20 flex items-center justify-center bg-azul-meia-noite/30 p-4">
-        <section
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="animal-complete-title"
-          onKeyDown={(event) => {
-            if (event.key === "Tab") {
-              event.preventDefault();
-              continueButton.focus();
-            }
-          }}
-          className="w-full max-w-sm rounded-3xl border-2 border-azul-meia-noite bg-branco-porcelana p-6 text-center shadow-neo-solid"
-        >
-          <h2 id="animal-complete-title" className="mb-3 text-2xl font-bold">
-            Parabéns!
-          </h2>
-          <p className="mb-5">
-            Você montou {animalConfig.article} {animalConfig.name.toLowerCase()}
-            !
-          </p>
-          <button
-            ref={(element) => (continueButton = element)}
-            type="button"
-            className="min-h-touch-target rounded-xl border-neo cursor-pointer bg-azul-iris px-6 py-3 font-bold text-white focus-visible:ring-4 focus-visible:ring-azul-iris/30"
-            onClick={onContinue}
-          >
-            Continuar
-          </button>
-        </section>
+    if (completed) return;
+    completed = true;
+    const previousLayout = layout;
+    tray.style.display = 'none';
+    referenceGroup.style.display = 'none';
+    animal.setAttribute('aria-label', `${animalConfig.name} ${animalConfig.article === 'a' ? 'montada' : 'montado'}`);
+    animal.setAttribute('role', 'group');
+    world.setAttribute('role', 'button');
+    world.setAttribute('tabindex', '0');
+    world.setAttribute('aria-label', `Ouvir som ${animalConfig.article === 'a' ? 'da' : 'do'} ${animalConfig.name.toLowerCase()}`);
+    world.style.pointerEvents = 'visiblePainted';
+    world.style.outline = 'none';
+    world.classList.add('cursor-pointer');
+    world.addEventListener('click', celebration.playSound);
+    world.addEventListener('keydown', onAnimalKeyDown);
+    selectPiece(null);
+    resizeBoard();
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      // O mesmo grupo de peças se desloca para a cena enquanto o fundo aparece.
+      const transform = ({ offsetX, offsetY, scale }) => `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+      sceneAnimation = world.animate([
+        { transform: transform(previousLayout) }, { transform: transform(layout) },
+      ], { duration: 1000, easing: 'ease-in-out' });
+    }
+    celebration.start();
+    const overlay = (
+      <div className="pointer-events-none absolute inset-x-0 bottom-4 z-20 flex justify-center px-4">
+        <Button text="Continuar" ariaLabel={`Continuar após montar ${animalConfig.article} ${animalConfig.name.toLowerCase()}`} onClick={onContinue} className="pointer-events-auto mb-0 w-auto min-w-40 px-8 py-3 focus-visible:ring-4 focus-visible:ring-azul-iris/30" />
       </div>
     );
-    boardContent.inert = true;
-    board.append(popup);
-    continueButton.focus();
+    board.append(overlay);
+    overlay.querySelector('button').focus();
+  }
+  function onAnimalKeyDown(event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      celebration.playSound();
+    }
   }
   pieces.forEach((piece) => {
     piece.onSelect = () => {
@@ -344,12 +369,19 @@ export function mountAnimalPuzzle(
   resizeBoard();
   const observer = new ResizeObserver(resizeBoard);
   observer.observe(stage);
-  return () => {
-    observer.disconnect();
-    pieces.forEach((piece) => {
-      piece.interaction.unset();
-      piece.card.removeEventListener("pointerdown", piece.onSelect);
-    });
-    board.remove();
+  return {
+    setSoundEnabled: celebration.setSoundEnabled,
+    destroy() {
+      celebration.destroy();
+      world.removeEventListener('click', celebration.playSound);
+      world.removeEventListener('keydown', onAnimalKeyDown);
+      sceneAnimation?.cancel();
+      observer.disconnect();
+      pieces.forEach((piece) => {
+        piece.interaction.unset();
+        piece.card.removeEventListener("pointerdown", piece.onSelect);
+      });
+      board.remove();
+    },
   };
 }

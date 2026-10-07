@@ -1,9 +1,10 @@
 import { animals } from "./animals.js";
 import { mountAnimalPuzzle } from "./puzzle.jsx";
 import logo from "../../assets/images/games/monte-o-bicho/logo.svg";
+import { shuffleAnimals } from './sequence.js';
 
-export function mountMonteBichos(gameContainer) {
-  let unmountPuzzle = null;
+export function mountMonteBichos(gameContainer, { soundEnabled = true } = {}) {
+  let puzzleInstance = null;
   let playButton;
   const root = (
     <section
@@ -14,8 +15,8 @@ export function mountMonteBichos(gameContainer) {
   gameContainer.replaceChildren(root);
 
   function showHome() {
-    unmountPuzzle?.();
-    unmountPuzzle = null;
+    puzzleInstance?.destroy();
+    puzzleInstance = null;
     root.replaceChildren(
       <div className="flex h-full min-h-0 flex-col items-center justify-center gap-5 px-6 py-4">
         <img
@@ -41,11 +42,17 @@ export function mountMonteBichos(gameContainer) {
   function showGame() {
     let puzzleContainer;
     let animalIndex = 0;
+    let sequence = shuffleAnimals(animals);
     function selectAnimal() {
-      unmountPuzzle?.();
-      unmountPuzzle = mountAnimalPuzzle(puzzleContainer, animals[animalIndex], {
+      puzzleInstance?.destroy();
+      puzzleInstance = mountAnimalPuzzle(puzzleContainer, sequence[animalIndex], {
+        soundEnabled,
         onContinue() {
-          animalIndex = (animalIndex + 1) % animals.length;
+          animalIndex++;
+          if (animalIndex === sequence.length) {
+            sequence = shuffleAnimals(animals, sequence[animalIndex - 1]);
+            animalIndex = 0;
+          }
           selectAnimal();
         },
       });
@@ -75,8 +82,12 @@ export function mountMonteBichos(gameContainer) {
 
   showHome();
   return {
+    setSoundEnabled(enabled) {
+      soundEnabled = enabled;
+      puzzleInstance?.setSoundEnabled(enabled);
+    },
     destroy() {
-      unmountPuzzle?.();
+      puzzleInstance?.destroy();
       root.remove();
     },
   };
