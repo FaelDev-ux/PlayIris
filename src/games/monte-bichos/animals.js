@@ -4,6 +4,10 @@ import passaroSvg from '../../assets/images/games/monte-o-bicho/passaro/passaro-
 import tartarugaSvg from '../../assets/images/games/monte-o-bicho/tartaruga/tartaruga-montada.svg?raw';
 import elefanteSvg from '../../assets/images/games/monte-o-bicho/elefante/elefante-montado.svg?raw';
 import ursoSvg from '../../assets/images/games/monte-o-bicho/urso/urso-montado.svg?raw';
+import { animalScenes } from './scene.js';
+
+const backgrounds = import.meta.glob('../../assets/images/games/monte-o-bicho/*/background.webp', { eager: true, query: '?url', import: 'default' });
+const sounds = import.meta.glob('../../assets/audio/games/monte-o-bicho/*/animal-sound.mp3', { eager: true, query: '?url', import: 'default' });
 
 export const animals = [
   {
@@ -75,4 +79,8 @@ export const animals = [
       { id: 'orelhas', label: 'Orelhas' },
     ],
   },
-];
+].map((animal) => {
+  const imageFolder = `../../assets/images/games/monte-o-bicho/${animal.id}`;
+  const soundFolder = `../../assets/audio/games/monte-o-bicho/${animal.id}`;
+  return { ...animal, scene: animalScenes[animal.id], background: backgrounds[`${imageFolder}/background.webp`], sound: sounds[`${soundFolder}/animal-sound.mp3`] };
+});
