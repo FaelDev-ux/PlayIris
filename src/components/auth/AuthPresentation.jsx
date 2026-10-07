@@ -1,4 +1,5 @@
 import irisMascot from "../../assets/images/iris-gamepad.webp";
+import { AuthDecorations } from "./AuthDecorations.jsx";
 
 export function AuthPresentation() {
   return (
@@ -6,6 +7,8 @@ export function AuthPresentation() {
       className="flex flex-col items-center justify-center p-8"
       aria-labelledby="iris-heading"
     >
+      <AuthDecorations />
+
       <div class="inline-flex items-center gap-2 rounded-full border-neo-thin bg-branco-porcelana px-4 py-2 text-xs font-bold uppercase">
         <span
           class="h-3 w-3 border rounded-full bg-azul-iris"

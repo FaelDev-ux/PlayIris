@@ -1,0 +1,8 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="SVG - Isometric Toy Cube - Bottom Center-Left (Wireframe Purple/Indigo)" opacity="0.3">
+<path id="Vector" d="M28 7L49 18.6667L28 30.3333L7 18.6667L28 7V7" stroke="#A78BFA" stroke-width="2.5" stroke-linejoin="round"/>
+<path id="Vector_2" d="M7 18.6667L28 30.3333V49L7 37.3333V18.6667V18.6667" stroke="#818CF8" stroke-width="2.5" stroke-linejoin="round"/>
+<path id="Vector_3" d="M49 18.6667L28 30.3333V49L49 37.3333V18.6667V18.6667" stroke="#38BDF8" stroke-width="2.5" stroke-linejoin="round"/>
+<path id="Vector_4" d="M28 30.3333V49" stroke="#818CF8" stroke-width="2.5"/>
+</g>
+</svg>
